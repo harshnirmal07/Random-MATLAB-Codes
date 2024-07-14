@@ -1,0 +1,13 @@
+function  first_problem
+solinit  = bvpinit(linspace(0,pi, 20), [1 0]);
+sol      = bvp4c(@odefun, @bcfun, solinit );
+x   = sol.x;  % domain
+y   = sol.y; % y, y^'
+plot(x, y(1, :))
+    function dydx = odefun(x, y)
+              dydx = [y(2); -y(1)];
+    end
+    function residual = bcfun(ya, yb)
+             residual = [ya(1); yb(1)];
+    end
+end
